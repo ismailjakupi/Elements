@@ -1,5 +1,3 @@
-
-<script>
 const intensitySlider = document.getElementById('intensity');
 const intensityValue = document.getElementById('intensityValue');
 
@@ -34,4 +32,3 @@ function warmColor() {
 
 // Initialize with default color on page load
 window.addEventListener('DOMContentLoaded', warmColor);
-</script>
