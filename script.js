@@ -279,6 +279,159 @@ document.getElementById('coolOriginalColor').addEventListener('click', () => {
   }, 1000);
 });
 
+warmColorInput.addEventListener('input', (e) => {
+  warmColorText.value = e.target.value.toUpperCase();
+  warmColor();
+});
+
+warmColorText.addEventListener('keydown', (e) => {
+  const input = e.target;
+  // prevent deleting # if cursor is at position 0 or 1
+  if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= 1) {
+    e.preventDefault();
+  }
+});
+
+warmColorText.addEventListener('input', (e) => {
+  let hex = e.target.value;
+  
+  // ensure # is always first
+  if (!hex.startsWith('#')) {
+    hex = '#' + hex.replace('#', '');
+    e.target.value = hex;
+  }
+  
+  if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+    warmColorInput.value = hex;
+    warmColor();
+  }
+});
+
+// Contrast Checker Tool
+const firstContrastColorInput = document.getElementById('firstContrastColorInput');
+const firstContrastColorText = document.getElementById('firstContrastColorText');
+const secondContrastColorInput = document.getElementById('secondContrastColorInput');
+const secondContrastColorText = document.getElementById('secondContrastColorText');
+
+// Sync first color
+firstContrastColorInput.addEventListener('input', (e) => {
+  firstContrastColorText.value = e.target.value.toUpperCase();
+  checkContrast();
+});
+
+firstContrastColorText.addEventListener('keydown', (e) => {
+  const input = e.target;
+  if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= 1) {
+    e.preventDefault();
+  }
+});
+
+firstContrastColorText.addEventListener('input', (e) => {
+  let hex = e.target.value;
+  if (!hex.startsWith('#')) {
+    hex = '#' + hex.replace('#', '');
+    e.target.value = hex;
+  }
+  if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+    firstContrastColorInput.value = hex;
+    checkContrast();
+  }
+});
+
+// Sync second color
+secondContrastColorInput.addEventListener('input', (e) => {
+  secondContrastColorText.value = e.target.value.toUpperCase();
+  checkContrast();
+});
+
+secondContrastColorText.addEventListener('keydown', (e) => {
+  const input = e.target;
+  if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= 1) {
+    e.preventDefault();
+  }
+});
+
+secondContrastColorText.addEventListener('input', (e) => {
+  let hex = e.target.value;
+  if (!hex.startsWith('#')) {
+    hex = '#' + hex.replace('#', '');
+    e.target.value = hex;
+  }
+  if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+    secondContrastColorInput.value = hex;
+    checkContrast();
+  }
+});
+
+function getRelativeLuminance(hex) {
+  let r = parseInt(hex.slice(1, 3), 16) / 255;
+  let g = parseInt(hex.slice(3, 5), 16) / 255;
+  let b = parseInt(hex.slice(5, 7), 16) / 255;
+  
+  r = r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+  g = g <= 0.03928 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+  b = b <= 0.03928 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+  
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function getContrastRatio(color1, color2) {
+  const lum1 = getRelativeLuminance(color1);
+  const lum2 = getRelativeLuminance(color2);
+  
+  const lighter = Math.max(lum1, lum2);
+  const darker = Math.min(lum1, lum2);
+  
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+function checkContrast() {
+  const bgColor = firstContrastColorInput.value;
+  const textColor = secondContrastColorInput.value;
+  
+  // Update preview
+  document.getElementById('contrastPreview').style.backgroundColor = bgColor;
+  document.getElementById('contrastPreviewText').style.color = textColor;
+  
+  // Calculate contrast ratio
+  const ratio = getContrastRatio(bgColor, textColor);
+  document.getElementById('contrastRatio').textContent = ratio.toFixed(1);
+  
+  // Check Normal AA (4.5:1)
+  const normalAA = document.getElementById('normalAAResult');
+  const normalAAStatus = normalAA.querySelector('.result-status');
+  if (ratio >= 4.5) {
+    normalAAStatus.textContent = '✓ Pass';
+    normalAAStatus.className = 'result-status pass';
+  } else {
+    normalAAStatus.textContent = '✗ Fail';
+    normalAAStatus.className = 'result-status fail';
+  }
+  
+  // Check Large AA (3:1)
+  const largeAA = document.getElementById('largeAAResult');
+  const largeAAStatus = largeAA.querySelector('.result-status');
+  if (ratio >= 3) {
+    largeAAStatus.textContent = '✓ Pass';
+    largeAAStatus.className = 'result-status pass';
+  } else {
+    largeAAStatus.textContent = '✗ Fail';
+    largeAAStatus.className = 'result-status fail';
+  }
+  
+  // Check Normal AAA (7:1)
+  const normalAAA = document.getElementById('normalAAAResult');
+  const normalAAAStatus = normalAAA.querySelector('.result-status');
+  if (ratio >= 7) {
+    normalAAAStatus.textContent = '✓ Pass';
+    normalAAAStatus.className = 'result-status pass';
+  } else {
+    normalAAAStatus.textContent = '✗ Fail';
+    normalAAAStatus.className = 'result-status fail';
+  }
+}
+
 // Initialize tools
 warmColor();
 coolColor();
+checkContrast();

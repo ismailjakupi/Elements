@@ -99,15 +99,21 @@
       </div>
     </section>
 
-    <!-- Contrast Checker (Placeholder) -->
+    <!-- Contrast Checker -->
     <section id="contrast" class="feature-section">
       <div class="feature-header">
         <h2>Contrast Checker</h2>
         <p>Coming soon - Check color accessibility and contrast ratios</p>
       </div>
       
-      <div class="tool-container" style="min-height: 300px; display: flex; align-items: center; justify-content: center;">
-        <p style="color: #666; font-size: 1.2em;">This feature is under development</p>
+      <div class="tool-container">
+        <div class="controls">
+          <input type="color" id="firstContrastColorInput" value="#000000">
+          <input type="text" id="firstContrastColorText" value="#000000" placeholder="#000000" maxlength="7">
+          
+          <input type="color" id="secondContrastColorInput" value="#FFFFFF">
+          <input type="text" id="secondContrastColorText" value="#FFFFFF" placeholder="#000000" maxlength="7">
+        </div>
       </div>
     </section>
     
