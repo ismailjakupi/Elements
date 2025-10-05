@@ -1,4 +1,4 @@
-// Scroll reveal animation
+// scroll reveal animation
 const observerOptions = {
   threshold: 0.2,
   rootMargin: '0px 0px -100px 0px'
@@ -16,7 +16,7 @@ document.querySelectorAll('.feature-section').forEach(section => {
   observer.observe(section);
 });
 
-// Sidebar navigation highlighting
+// sidebar navigation highlighting
 const navLinks = document.querySelectorAll('.sidebar nav a');
 const sections = document.querySelectorAll('section');
 
@@ -38,7 +38,7 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// Smooth scrolling
+// smooth scrolling
 navLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -50,8 +50,38 @@ navLinks.forEach(link => {
 
 // Warm Colors Tool
 const warmColorInput = document.getElementById('warmColorInput');
+const warmColorText = document.getElementById('warmColorText');
 const warmIntensity = document.getElementById('warmIntensity');
 const warmIntensityValue = document.getElementById('warmIntensityValue');
+
+// when color picker changes, update text field
+warmColorInput.addEventListener('input', (e) => {
+  warmColorText.value = e.target.value.toUpperCase();
+  warmColor();
+});
+
+warmColorText.addEventListener('keydown', (e) => {
+  const input = e.target;
+  // prevent deleting # if cursor is at position 0 or 1
+  if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= 1) {
+    e.preventDefault();
+  }
+});
+
+warmColorText.addEventListener('input', (e) => {
+  let hex = e.target.value;
+  
+  // ensure # is always first
+  if (!hex.startsWith('#')) {
+    hex = '#' + hex.replace('#', '');
+    e.target.value = hex;
+  }
+  
+  if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+    warmColorInput.value = hex;
+    warmColor();
+  }
+});
 
 warmIntensity.addEventListener('input', (e) => {
   warmIntensityValue.textContent = e.target.value;
@@ -83,10 +113,91 @@ function warmColor() {
   document.getElementById('warmedCode').textContent = warmed.toUpperCase();
 }
 
+// copy color code on click
+document.getElementById('warmedCode').addEventListener('click', () => {
+  const colorCode = document.getElementById('warmedCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  // visual feedback
+  const el = document.getElementById('warmedCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+document.getElementById('warmOriginalCode').addEventListener('click', () => {
+  const colorCode = document.getElementById('warmOriginalCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('warmOriginalCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+// copy on click boxes
+document.getElementById('warmedColor').addEventListener('click', () => {
+  const colorCode = document.getElementById('warmedCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('warmedCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+document.getElementById('warmOriginalColor').addEventListener('click', () => {
+  const colorCode = document.getElementById('warmOriginalCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('warmOriginalCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
 // Cool Colors Tool
 const coolColorInput = document.getElementById('coolColorInput');
+const coolColorText = document.getElementById('coolColorText');
 const coolIntensity = document.getElementById('coolIntensity');
 const coolIntensityValue = document.getElementById('coolIntensityValue');
+
+// when color picker changes, update text field
+coolColorInput.addEventListener('input', (e) => {
+  coolColorText.value = e.target.value.toUpperCase();
+  coolColor();
+});
+
+coolColorText.addEventListener('keydown', (e) => {
+  const input = e.target;
+  // prevent deleting # if cursor is at position 0 or 1
+  if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= 1) {
+    e.preventDefault();
+  }
+});
+
+coolColorText.addEventListener('input', (e) => {
+  let hex = e.target.value;
+  
+  // ensure # is always first
+  if (!hex.startsWith('#')) {
+    hex = '#' + hex.replace('#', '');
+    e.target.value = hex;
+  }
+  
+  if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+    coolColorInput.value = hex;
+    coolColor();
+  }
+});
 
 coolIntensity.addEventListener('input', (e) => {
   coolIntensityValue.textContent = e.target.value;
@@ -117,6 +228,56 @@ function coolColor() {
   document.getElementById('coolOriginalCode').textContent = color.toUpperCase();
   document.getElementById('cooledCode').textContent = cooled.toUpperCase();
 }
+
+// copy colors
+document.getElementById('cooledCode').addEventListener('click', () => {
+  const colorCode = document.getElementById('cooledCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('cooledCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+document.getElementById('coolOriginalCode').addEventListener('click', () => {
+  const colorCode = document.getElementById('coolOriginalCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('coolOriginalCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+// copy on click boxes
+document.getElementById('cooledColor').addEventListener('click', () => {
+  const colorCode = document.getElementById('cooledCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('cooledCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+document.getElementById('coolOriginalColor').addEventListener('click', () => {
+  const colorCode = document.getElementById('coolOriginalCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('coolOriginalCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
 
 // Initialize tools
 warmColor();
