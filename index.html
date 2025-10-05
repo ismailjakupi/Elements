@@ -1,40 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warm My Color</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>🔥 Warm Your Color</h1>
-      <p class="subtitle">Add warmth to any color by shifting toward reds and oranges</p>
-      
-      <div class="controls">
-        <input type="color" id="colorInput" value="#0f0f0f">
-        <button onclick="warmColor()">Warm It!</button>
-      </div>
-      
-      <div class="color-display">
-        <div class="color-item">
-          <div class="color-box" id="originalColor"></div>
-          <div class="color-label">Original</div>
-          <div class="color-code" id="originalCode"></div>
-        </div>
-        <div class="color-item">
-          <div class="color-box" id="warmedColor"></div>
-          <div class="color-label">Warmed</div>
-          <div class="color-code" id="warmedCode"></div>
-        </div>
-      </div>
-      
-      <div class="intensity-control">
-        <div class="intensity-label">Warming Intensity: <span id="intensityValue">50</span>%</div>
-        <input type="range" id="intensity" min="0" max="100" value="50">
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elements - Color Tools</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>Elements</h2>
     </div>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#warm">Warm Colors</a>
+      <a href="#cool">Cool Colors</a>
+      <a href="#palette">Palette Generator</a>
+      <a href="#contrast">Contrast Checker</a>
+    </nav>
+  </aside>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <h1>Elements</h1>
+      <p>A modern collection of color tools for designers and developers. Transform, analyze, and perfect your color palette.</p>
+      <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Warm Colors Feature -->
+    <section id="warm" class="feature-section">
+      <div class="feature-header">
+        <h2>Warm Colors</h2>
+        <p>Add warmth to any color by shifting toward reds and oranges</p>
+      </div>
+      
+      <div class="tool-container">
+        <div class="controls">
+          <input type="color" id="warmColorInput" value="#3498db">
+        </div>
+        
+        <div class="color-display">
+          <div class="color-item">
+            <div class="color-box" id="warmOriginalColor"></div>
+            <div class="color-label">Original</div>
+            <div class="color-code" id="warmOriginalCode"></div>
+          </div>
+          <div class="color-item">
+            <div class="color-box" id="warmedColor"></div>
+            <div class="color-label">Warmed</div>
+            <div class="color-code" id="warmedCode"></div>
+          </div>
+        </div>
+        
+        <div class="intensity-control">
+          <div class="intensity-label">Warming Intensity: <span id="warmIntensityValue">50</span>%</div>
+          <input type="range" id="warmIntensity" min="0" max="100" value="50">
+        </div>
+      </div>
+    </section>
+
+    <!-- Cool Colors Feature -->
+    <section id="cool" class="feature-section">
+      <div class="feature-header">
+        <h2>Cool Colors</h2>
+        <p>Add coolness to any color by shifting toward blues and greens</p>
+      </div>
+      
+      <div class="tool-container">
+        <div class="controls">
+          <input type="color" id="coolColorInput" value="#f39c12">
+        </div>
+        
+        <div class="color-display">
+          <div class="color-item">
+            <div class="color-box" id="coolOriginalColor"></div>
+            <div class="color-label">Original</div>
+            <div class="color-code" id="coolOriginalCode"></div>
+          </div>
+          <div class="color-item">
+            <div class="color-box" id="cooledColor"></div>
+            <div class="color-label">Cooled</div>
+            <div class="color-code" id="cooledCode"></div>
+          </div>
+        </div>
+        
+        <div class="intensity-control">
+          <div class="intensity-label">Cooling Intensity: <span id="coolIntensityValue">50</span>%</div>
+          <input type="range" id="coolIntensity" min="0" max="100" value="50">
+        </div>
+      </div>
+    </section>
+
+    <!-- Palette Generator (Placeholder) -->
+    <section id="palette" class="feature-section">
+      <div class="feature-header">
+        <h2>Palette Generator</h2>
+        <p>Coming soon - Generate harmonious color palettes</p>
+      </div>
+      
+      <div class="tool-container" style="min-height: 300px; display: flex; align-items: center; justify-content: center;">
+        <p style="color: #666; font-size: 1.2em;">This feature is under development</p>
+      </div>
+    </section>
+
+    <!-- Contrast Checker (Placeholder) -->
+    <section id="contrast" class="feature-section">
+      <div class="feature-header">
+        <h2>Contrast Checker</h2>
+        <p>Coming soon - Check color accessibility and contrast ratios</p>
+      </div>
+      
+      <div class="tool-container" style="min-height: 300px; display: flex; align-items: center; justify-content: center;">
+        <p style="color: #666; font-size: 1.2em;">This feature is under development</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
