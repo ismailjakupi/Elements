@@ -170,6 +170,31 @@ input[type="text"] {
   text-align: center;
 }
 
+input[type="color"] { 
+  width: 100px;
+  height: 60px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: none; /* Remove background */
+  padding: 0; /* Remove padding */
+}
+
+/* This targets the color swatch itself in some browsers */
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 12px;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 12px;
+}
+
 .color-display {
   display: flex;
   gap: 30px;
