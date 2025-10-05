@@ -99,23 +99,61 @@
       </div>
     </section>
 
-    <!-- Contrast Checker -->
-    <section id="contrast" class="feature-section">
-      <div class="feature-header">
-        <h2>Contrast Checker</h2>
-        <p>Coming soon - Check color accessibility and contrast ratios</p>
-      </div>
-      
-      <div class="tool-container">
-        <div class="controls">
+  <!-- Contrast Checker -->
+  <section id="contrast" class="feature-section">
+    <div class="feature-header">
+      <h2>Contrast Checker</h2>
+      <p>Check color accessibility and contrast ratios for WCAG compliance</p>
+    </div>
+    
+    <div class="tool-container">
+      <div class="controls">
+        <div style="display: flex; gap: 15px;">
           <input type="color" id="firstContrastColorInput" value="#000000">
           <input type="text" id="firstContrastColorText" value="#000000" placeholder="#000000" maxlength="7">
-          
+        </div>
+        
+        <div style="display: flex; gap: 15px;">
           <input type="color" id="secondContrastColorInput" value="#FFFFFF">
-          <input type="text" id="secondContrastColorText" value="#FFFFFF" placeholder="#000000" maxlength="7">
+          <input type="text" id="secondContrastColorText" value="#FFFFFF" placeholder="#FFFFFF" maxlength="7">
         </div>
       </div>
-    </section>
+      
+      <!-- Preview -->
+      <div style="margin: 40px 0; text-align: center;">
+        <div id="contrastPreview" style="padding: 60px; border-radius: 20px; background: #000000;">
+          <h3 id="contrastPreviewText" style="margin: 0; font-size: 2em; color: #FFFFFF;">Sample Text</h3>
+        </div>
+      </div>
+      
+      <!-- Results -->
+      <div style="text-align: center;">
+        <div style="font-size: 3em; font-weight: 700; margin-bottom: 20px; color: #fff;">
+          <span id="contrastRatio">21.0</span><span style="opacity: 0.5;">:1</span>
+        </div>
+        
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <div class="contrast-result" id="normalAAResult">
+            <div class="result-label">Normal Text (AA)</div>
+            <div class="result-status">✓ Pass</div>
+            <div class="result-requirement">Requires 4.5:1</div>
+          </div>
+          
+          <div class="contrast-result" id="largeAAResult">
+            <div class="result-label">Large Text (AA)</div>
+            <div class="result-status">✓ Pass</div>
+            <div class="result-requirement">Requires 3:1</div>
+          </div>
+          
+          <div class="contrast-result" id="normalAAAResult">
+            <div class="result-label">Normal Text (AAA)</div>
+            <div class="result-status">✓ Pass</div>
+            <div class="result-requirement">Requires 7:1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     
     <!-- Palette Generator (Placeholder) -->
     <section id="palette" class="feature-section">
