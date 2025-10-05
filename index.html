@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Warm My Color</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="container">
-  <h1>🔥 Warm Your Color</h1>
-  <p class="subtitle">Add warmth to any color by shifting toward reds and oranges</p>
-  
-  <div class="controls">
-    <input type="color" id="colorInput" value="#3498db">
-    <button onclick="warmColor()">Warm It!</button>
-  </div>
-  
-  <div class="color-display">
-    <div class="color-item">
-      <div class="color-box" id="originalColor"></div>
-      <div class="color-label">Original</div>
-      <div class="color-code" id="originalCode"></div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warm My Color</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔥 Warm Your Color</h1>
+      <p class="subtitle">Add warmth to any color by shifting toward reds and oranges</p>
+      
+      <div class="controls">
+        <input type="color" id="colorInput" value="#0f0f0f">
+        <button onclick="warmColor()">Warm It!</button>
+      </div>
+      
+      <div class="color-display">
+        <div class="color-item">
+          <div class="color-box" id="originalColor"></div>
+          <div class="color-label">Original</div>
+          <div class="color-code" id="originalCode"></div>
+        </div>
+        <div class="color-item">
+          <div class="color-box" id="warmedColor"></div>
+          <div class="color-label">Warmed</div>
+          <div class="color-code" id="warmedCode"></div>
+        </div>
+      </div>
+      
+      <div class="intensity-control">
+        <div class="intensity-label">Warming Intensity: <span id="intensityValue">50</span>%</div>
+        <input type="range" id="intensity" min="0" max="100" value="50">
+      </div>
     </div>
-    <div class="color-item">
-      <div class="color-box" id="warmedColor"></div>
-      <div class="color-label">Warmed</div>
-      <div class="color-code" id="warmedCode"></div>
-    </div>
-  </div>
-  
-  <div class="intensity-control">
-    <div class="intensity-label">Warming Intensity: <span id="intensityValue">50</span>%</div>
-    <input type="range" id="intensity" min="0" max="100" value="50">
-  </div>
-</div>
 
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

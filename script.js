@@ -1,9 +1,6 @@
 const intensitySlider = document.getElementById('intensity');
 const intensityValue = document.getElementById('intensityValue');
-
-intensitySlider.addEventListener('input', (e) => {
-  intensityValue.textContent = e.target.value;
-});
+const colorInput = document.getElementById('colorInput')
 
 function warmColor() {
   let color = document.getElementById('colorInput').value;
@@ -13,8 +10,8 @@ function warmColor() {
   let g = parseInt(color.slice(3, 5), 16);
   let b = parseInt(color.slice(5, 7), 16);
 
-  // Enhanced warming algorithm
-  // Shift toward red-orange spectrum
+  // enhanced warming algorithm
+  // shift toward red-orange spectrum
   const warmShift = 50 * intensity;
   const coolReduction = 30 * intensity;
   
@@ -30,5 +27,15 @@ function warmColor() {
   document.getElementById('warmedCode').textContent = warmed.toUpperCase();
 }
 
-// Initialize with default color on page load
+// ----- LISTENERS ------
+// initialize with default color on page load
 window.addEventListener('DOMContentLoaded', warmColor);
+
+intensitySlider.addEventListener('input', (e) => {
+  intensityValue.textContent = e.target.value;
+  warmColor(); // Automatically warm color as you adjust!
+});
+
+colorInput.addEventListener('input', (e) => {
+  warmColor(); // Automatically warm the new color!
+});
