@@ -308,7 +308,8 @@ warmColorText.addEventListener('input', (e) => {
 });
 
 // Invert colors tool
-const colorInput = document.getElementById('invertColorInput');
+const invertColorInput = document.getElementById('invertColorInput');
+const invertColorText = document.getElementById('invertColorText');
 const box1 = document.getElementById('invertBox1');
 const box2 = document.getElementById('invertBox2');
 const text1 = document.getElementById('invertText1');
@@ -330,7 +331,7 @@ function invertColor(hex) {
 }
 
 function updateInvertBoxes() {
-  const color = colorInput.value;
+  const color = invertColorInput.value;
   const inverted = invertColor(color);
 
   box1.style.backgroundColor = color;
@@ -338,10 +339,38 @@ function updateInvertBoxes() {
 
   box2.style.backgroundColor = inverted;
   text2.style.color = color;
+  
+  // Update hex code displays
+  document.getElementById('invertOriginalCode').textContent = color.toUpperCase();
+  document.getElementById('invertedCode').textContent = inverted.toUpperCase();
 }
 
 // update on input
-colorInput.addEventListener('input', updateInvertBoxes);
+invertColorInput.addEventListener('input', updateInvertBoxes);
+
+invertColorInput.addEventListener('input', (e) => {
+  invertColorText.value = e.target.value.toUpperCase();
+  updateInvertBoxes();
+});
+
+invertColorText.addEventListener('keydown', (e) => {
+  const input = e.target;
+  if ((e.key === 'Backspace' || e.key === 'Delete') && input.selectionStart <= 1) {
+    e.preventDefault();
+  }
+});
+
+invertColorText.addEventListener('input', (e) => {
+  let hex = e.target.value;
+  if (!hex.startsWith('#')) {
+    hex = '#' + hex.replace('#', '');
+    e.target.value = hex;
+  }
+  if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+    invertColorInput.value = hex;
+    updateInvertBoxes();
+  }
+});
 
 // Contrast Checker Tool
 const firstContrastColorInput = document.getElementById('firstContrastColorInput');
