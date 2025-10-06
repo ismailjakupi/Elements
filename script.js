@@ -345,6 +345,56 @@ function updateInvertBoxes() {
   document.getElementById('invertedCode').textContent = inverted.toUpperCase();
 }
 
+// Copy functionality for invert colors
+document.getElementById('invertOriginalCode').addEventListener('click', () => {
+  const colorCode = document.getElementById('invertOriginalCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('invertOriginalCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+document.getElementById('invertedCode').addEventListener('click', () => {
+  const colorCode = document.getElementById('invertedCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('invertedCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+// Copy on click boxes
+document.getElementById('invertBox1').addEventListener('click', () => {
+  const colorCode = document.getElementById('invertOriginalCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('invertOriginalCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
+document.getElementById('invertBox2').addEventListener('click', () => {
+  const colorCode = document.getElementById('invertedCode').textContent;
+  navigator.clipboard.writeText(colorCode);
+  
+  const el = document.getElementById('invertedCode');
+  const originalText = el.textContent;
+  el.textContent = 'Copied!';
+  setTimeout(() => {
+    el.textContent = originalText;
+  }, 1000);
+});
+
 // update on input
 invertColorInput.addEventListener('input', updateInvertBoxes);
 
