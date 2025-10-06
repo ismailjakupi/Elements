@@ -307,6 +307,42 @@ warmColorText.addEventListener('input', (e) => {
   }
 });
 
+// Invert colors tool
+const colorInput = document.getElementById('invertColorInput');
+const box1 = document.getElementById('invertBox1');
+const box2 = document.getElementById('invertBox2');
+const text1 = document.getElementById('invertText1');
+const text2 = document.getElementById('invertText2');
+
+function invertColor(hex) {
+  // remove #
+  hex = hex.replace('#','');
+  // convert to RGB
+  let r = parseInt(hex.substring(0,2),16);
+  let g = parseInt(hex.substring(2,4),16);
+  let b = parseInt(hex.substring(4,6),16);
+  // invert
+  r = 255 - r;
+  g = 255 - g;
+  b = 255 - b;
+  // return as hex
+  return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
+}
+
+function updateInvertBoxes() {
+  const color = colorInput.value;
+  const inverted = invertColor(color);
+
+  box1.style.backgroundColor = color;
+  text1.style.color = inverted;
+
+  box2.style.backgroundColor = inverted;
+  text2.style.color = color;
+}
+
+// update on input
+colorInput.addEventListener('input', updateInvertBoxes);
+
 // Contrast Checker Tool
 const firstContrastColorInput = document.getElementById('firstContrastColorInput');
 const firstContrastColorText = document.getElementById('firstContrastColorText');
@@ -434,4 +470,5 @@ function checkContrast() {
 // Initialize tools
 warmColor();
 coolColor();
+updateInvertBoxes();
 checkContrast();
