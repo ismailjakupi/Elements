@@ -235,10 +235,11 @@ input[type="color"]::-moz-color-swatch {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  font-size: 1.2em;
-  font-weight: 600;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
 .color-display {
   display: flex;
